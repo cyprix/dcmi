@@ -1,4 +1,5 @@
 This is the patched version of DCMI and MEI for Quanta Windmill mobo (OpenCompute node)
+Modules not striped, so if you need, do stripe on them.
 
 Thanks nz0.14910 from servethehome.com for this https://forums.servethehome.com/index.php?threads/potential-deal-2-x-dual-2011-nodes-199-quanta-openrack.6856/page-34
 
