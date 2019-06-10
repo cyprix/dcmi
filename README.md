@@ -7,7 +7,7 @@ TODO: make rpm and deb specs with DKMS-support
 
 Howto:
 
-Download the repository, and do make, and make install.
+Download the repository, and install the modules.
 
 
 
