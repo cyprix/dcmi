@@ -25,6 +25,10 @@ Download the repository, and install the modules.
     ```bash
     make
     make install
+   ```
+5. Additionally, you can stripe modules ( remove debug-symbols), and this will reduce module size ( from 1.6M to 141K):
+    ```bash
+    find -type f -name \*.ko -print -exec strip --strip-debug \{\} \;
     ```
 
 ### TODO:
