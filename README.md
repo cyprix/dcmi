@@ -1,28 +1,31 @@
 This is the patched version of DCMI and MEI for Quanta Windmill mobo (OpenCompute node)
-Modules not striped, so if you need, do stripe on them.
+
+Currently here only binary kernel modules form DCMI and MEI interfaces, modules not striped, so if you need, stripe them.
 
 Thanks nz0.14910 from servethehome.com for this https://forums.servethehome.com/index.php?threads/potential-deal-2-x-dual-2011-nodes-199-quanta-openrack.6856/page-34
 
-TODO: make rpm and deb specs with DKMS-support
-
-
-Howto:
+## Howto:
 
 Download the repository, and install the modules.
 
+## Manual build:
+1. Download the source files from packages in https://launchpad.net/~opencompute-developers/+archive/ubuntu/ocp-certification-tools-ppa/
+    - dcmi-dkms-2.1.6.28.MEI
+    - mei-dkms-7.1.21.4.S
 
+2. For mei-dkms add ```#include <linux/irq.h>``` to **mei_dev.h** file:
+    ```bash
+    sed -i '/#include "hw.h"/a #include <linux\/irq.h>' mei_dev.h
+    ```
+3. For dcmi-dkms replace ```f_dentry``` with ```f_path.dentry``` in **dcmi_main.c**:
+    ```bash
+    sed -i 's/f_dentry/f_path.dentry/g' dcmi_main.c
+    ```
+4. Build and install each module:
+    ```bash
+    make
+    make install
+    ```
 
-Download the source files from Packages in https://launchpad.net/~opencompute-developers/+archive/ubuntu/ocp-certification-tools-ppa/
-
-- dcmi-dkms-2.1.6.28.MEI
-- mei-dkms-7.1.21.4.S
-
-for mei-dkms add #include <linux/irq.h> to mei_dev.h
-
-for dcmi-dkms replace f_dentry with f_path.dentry in dcmi_main.c 
-
-you need to reboot in order to load the newly compiled mei module.
-
-load the module dcmi.
-
-
+### TODO:
+Make rpm and deb specs with DKMS-support
